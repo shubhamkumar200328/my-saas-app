@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import NavItems from './NavItems';
 
 const Navbar = () => {
   return (
@@ -10,6 +11,13 @@ const Navbar = () => {
           <label>skillmate-ai</label>
         </div>
       </Link>
+      <div className="flex items-center gap-8">
+        <NavItems />
+        <p className="flex items-center gap-2 cursor-pointer">
+          <Link href="/sign-in">Sign-In</Link>
+          <Link href="/sign-up">Sign-Up</Link>
+        </p>
+      </div>
     </nav>
   );
 };
