@@ -1,7 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -15,16 +14,18 @@ interface CompanionsListProps {
   title: string;
   companions?: Companion[];
   classNames?: string;
+  listKey: 'bookmarks' | 'recent' | 'owned';
 }
 
 const CompanionsList = ({
   title,
   companions,
   classNames,
+  listKey,
 }: CompanionsListProps) => {
   return (
     <article className={cn('companion-list', classNames)}>
-      <h2 className="font-bold text-3xl">Recent Sessions</h2>
+      <h2 className="font-bold text-3xl">{title}</h2>
 
       <Table>
         <TableHeader>
@@ -34,9 +35,10 @@ const CompanionsList = ({
             <TableHead className="text-lg text-right">Duration</TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {companions?.map(({ id, subject, name, topic, duration }) => (
-            <TableRow key={id}>
+            <TableRow key={`${listKey}-${id}`}>
               <TableCell>
                 <Link href={`/companions/${id}`}>
                   <div className="flex items-center gap-2">
@@ -58,6 +60,7 @@ const CompanionsList = ({
                   </div>
                 </Link>
               </TableCell>
+
               <TableCell>
                 <div className="subject-badge w-fit max-md:hidden">
                   {subject}
@@ -74,6 +77,7 @@ const CompanionsList = ({
                   />
                 </div>
               </TableCell>
+
               <TableCell>
                 <div className="flex items-center gap-2 w-full justify-end">
                   <p className="text-2xl">

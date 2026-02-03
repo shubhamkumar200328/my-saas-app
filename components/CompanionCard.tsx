@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import BookmarkButton from './BookmarkButton';
+import { cn } from '@/lib/utils';
 
 interface CompanionCardProps {
   id: string;
@@ -8,6 +10,7 @@ interface CompanionCardProps {
   subject: string;
   duration: number;
   color: string;
+  isBookmarked: boolean;
 }
 
 const CompanionCard = ({
@@ -17,23 +20,25 @@ const CompanionCard = ({
   subject,
   duration,
   color,
+  isBookmarked,
 }: CompanionCardProps) => {
   return (
-    <article className="companion-card" style={{ backgroundColor: color }}>
+    <article
+      className={cn(
+        'companion-card transition-all',
+        isBookmarked && 'ring-2 ring-black/80',
+      )}
+      style={{ backgroundColor: color }}
+    >
       <div className="flex justify-between items-center">
         <div className="subject-badge">{subject}</div>
-        <button className="companion-bookmark">
-          <Image
-            src="/icons/bookmark.svg"
-            alt="bookmark"
-            width={12.5}
-            height={15}
-          />
-        </button>
+
+        <BookmarkButton companionId={id} isBookmarked={isBookmarked} />
       </div>
 
       <h2 className="text-2xl font-bold">{name}</h2>
       <p className="text-sm">{topic}</p>
+
       <div className="flex items-center gap-2">
         <Image
           src="/icons/clock.svg"
