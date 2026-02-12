@@ -1,3 +1,5 @@
+![Project Screenshot](./public/images/skillmate-ai-homePage.png)
+
 # 🎓 AI-Powered LMS SaaS Platform
 
 Build and deploy a modern Learning Management System (LMS) with AI voice tutors, subscriptions, and real-time interactions using Next.js, Supabase, Stripe, and Vapi.
